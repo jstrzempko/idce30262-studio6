@@ -89,16 +89,31 @@
 		var Healthsites = null;
 
 		// Add GeoJSON Data to the map when it loads
+		// Add GeoJSON Data to the map when it loads
 		$.getJSON("data/Mali_healthsites.geojson", function(data) {
 			// set Healthsites to the dataset and add the Healthsites GeoJSON layer to the map
 			Healthsites = L.geoJson(data, {
 				onEachFeature: function(feature, layer) {
-					layer.bindPopup('<strong>Name: </strong>' + feature.properties.name + '</br>' + '<strong>Amenity: </strong>' + feature.properties.amenity);
+					layer.bindPopup('<strong>Name: </strong>' + feature.properties.name + '</br><strong>Amenity: </strong>' + feature.properties.amenity);
+				},
+				pointToLayer: function(feature, latlng) { // We're adding pointToLayer & the marker variable.
+					var marker = L.marker(latlng, {
+						icon: healthIcon
+					});
+					return marker;
 				}
 			}).addTo(map);
 		});
 
+
 		// Create Custom Icons Here
+		// Start by creating a standard Health Icon
+		var healthIcon = L.icon({
+			iconUrl: 'icons/generichealth_LianeKirshner.png',
+			iconSize: [24, 24],
+			iconAnchor: [12, 12],
+			popupAnchor: [0, -6]
+		});
 
 		// Add Admin unit Polygons
 
