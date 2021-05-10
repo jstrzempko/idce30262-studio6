@@ -43,6 +43,37 @@
 			border-color: #efd399;
 		}
 
+		.legend {
+			line-height: 18px;
+			color: #333333;
+			font-family: Helvetica, sans-serif;
+			padding: 6px 8px;
+			background: white;
+			background: rgba(255, 255, 255, 0.8);
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+		}
+
+		.legend i {
+			width: 18px;
+			height: 18px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+
+		.legend img {
+			width: 18px;
+			height: 18px;
+			float: left;
+		}
+
+		.legend p {
+			font-size: 12px;
+			line-height: 18px;
+			margin: 0;
+		}
+
 		#controls {
 			width: 100%;
 			margin: 0 auto;
@@ -104,7 +135,7 @@
 			// set Healthsites to the dataset and add the Healthsites GeoJSON layer to the map
 			Healthsites = L.geoJson(data, {
 				onEachFeature: function(feature, layer) {
-					layer.bindPopup('<strong>Name: </strong>' + feature.properties.name + '</br><strong>Amenity: </strong>' + feature.properties.amenity);
+					layer.bindPopup('<b>Name: </b>' + feature.properties.name + '</br><b>Amenity: </b>' + feature.properties.amenity);
 				},
 				pointToLayer: function(feature, latlng) {
 					if (feature.properties.amenity == "clinic") { // Replacing previous marker with conditionals
@@ -167,14 +198,16 @@
 
 		// Add Admin Polygons
 		$.getJSON("data/Mali_Prevalence_Global_Acute_Malnutrition.geojson", function(data) {
-			adminLayer = L.geoJson(data).addTo(map);
+			adminLayer = L.geoJson(data, {
+				style: style
+			}).addTo(map); // we added {style: style} here.
 		});
 
 		// Set function for color ramp w/ colors from Colorbrewer
 		function setColor(Wast_Text) {
-			return Wast_Text == 'High' ? '#f03b20' :
-				Wast_Text == 'Medium' ? '#feb24c' :
-				Wast_Text == 'Low' ? '#ffeda0' :
+			return Wast_Text == 'High' ? '#590d0a' :
+				Wast_Text == 'Medium' ? '#de2d26' :
+				Wast_Text == 'Low' ? '#fc9272' :
 				'#d4cfcd';
 		};
 
@@ -190,6 +223,33 @@
 		}
 
 		// Create Leaflet Control Object for Legend
+		var legend = L.control({
+			position: 'topright'
+		});
+
+		// Function that runs when legend is added to map
+		legend.onAdd = function(map) {
+
+			// Create Div Element and Populate it with HTML
+			var div = L.DomUtil.create('div', 'legend');
+			div.innerHTML += '<b>Prevalence of wasting </b><br/>';
+			div.innerHTML += '<b>in children < 5 yrs. old,</b><br/>';
+			div.innerHTML += '<b>by region</b><br/>';
+			div.innerHTML += '<i style="background: #590d0a"></i> High</br>';
+			div.innerHTML += '<i style="background: #de2d26"></i> Medium</br>';
+			div.innerHTML += '<i style="background: #fc9272"></i> Low</br>';
+			div.innerHTML += '<i style="background: #d4cfcd"></i> Uncategorized</br>';
+			div.innerHTML += '<hr><img src="icons/OCHA_clinic.png"> Clinic</br>';
+			div.innerHTML += '<img src="icons/dentist_achmadmulyana.png"> Dentist</br>';
+			div.innerHTML += '<img src="icons/OCHA_doctor.png"> Doctor</br>';
+			div.innerHTML += '<img src="icons/OCHA_hospital.png"> Hospital</br>';
+			div.innerHTML += '<img src="icons/OCHA_pharmacy.png"> Pharmacy</br>';
+			// Return the Legend div containing the HTML content
+			return div;
+		};
+
+		// Add Legend to Map
+		legend.addTo(map);
 
 		// Add Scale Bar to Map
 	</script>
