@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Mali Health Sites Map</title>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
@@ -12,14 +13,14 @@
 			float: left;
 			padding-left: 10px;
 			font-family: Helvetica, Arial, Verdana;
-      font-size: 42px
-    }
+			font-size: 42px
+		}
 
-    p {
-      font-family: Helvetica, Arial, Verdana;
-      font-size: 18px;
+		p {
+			font-family: Helvetica, Arial, Verdana;
+			font-size: 18px;
 			padding-left: 10px;
-    }
+		}
 
 		#wrapper {
 			width: 800px;
@@ -50,6 +51,7 @@
 		}
 	</style>
 </head>
+
 <body>
 	<!-- Web map & content will go here.  -->
 	<div id="wrapper">
@@ -61,23 +63,40 @@
 			<!-- Here is the code for a button if we were going to add them.
 			<button class="button" id="toggleButton">BUTTON!</button>
 			-->
-			<div id="narrative"><p>You can put narrative text or explanation here.</p></div>
+			<div id="narrative">
+				<p>You can put narrative text or explanation here.</p>
+			</div>
 		</div>
 	</div>
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
-    	// Create Map Object
-    	var map = L.map('map',{ center: [39.7644,-104.8548], zoom: 9 });
+		// Create Map Object
+		var map = L.map('map', {
+			center: [16.396849, -2.167592],
+			zoom: 5,
+		});
 
-    	// Add Tile Layer
-		L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
-			attribution: 'Tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> | Data by <a href="url here">Who???</a>',
-			maxZoom: 17,
-			minZoom: 9
+		// Add Tile Layer
+		L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+			attribution: '&copy; OpenStreetMap France | &copy; Tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> | Data by <a href="https://data.humdata.org/dataset/wfp-geonode-ica-mali-prevalence-of-global-acute-malnutrition">World Food Programme</a> and <a href="https://data.humdata.org/dataset/mali-healthsites">OSM Contributors</a>',
+			maxZoom: 18,
+			minZoom: 2,
 		}).addTo(map);
 
 		// Add GeoJSON Data
+		// Null variable that will hold Healthsites data
+		var Healthsites = null;
+
+		// Add GeoJSON Data to the map when it loads
+		$.getJSON("data/Mali_healthsites.geojson", function(data) {
+			// set Healthsites to the dataset and add the Healthsites GeoJSON layer to the map
+			Healthsites = L.geoJson(data, {
+				onEachFeature: function(feature, layer) {
+					layer.bindPopup('<strong>Name: </strong>' + feature.properties.name + '</br>' + '<strong>Amenity: </strong>' + feature.properties.amenity);
+				}
+			}).addTo(map);
+		});
 
 		// Create Custom Icons Here
 
@@ -86,8 +105,7 @@
 		// Create Leaflet Control Object for Legend
 
 		// Add Scale Bar to Map
-
-
 	</script>
 </body>
+
 </html>
