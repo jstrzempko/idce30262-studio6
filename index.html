@@ -9,6 +9,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Corben&family=Lato&display=swap" rel="stylesheet">
 	<!-- Adding in leaflet.css stylesheet file-->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+	<!-- Adding in geocoder styling information for the search bar-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 	<style>
 		body {
 			background-color: #f3e9d4;
@@ -112,6 +114,7 @@
 	</div>
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 	<script>
 		// Create Map Object
 		var map = L.map('map', {
@@ -125,6 +128,14 @@
 			maxZoom: 18,
 			minZoom: 2,
 		}).addTo(map);
+
+		//Adding the search geocoder
+		L.Control.geocoder({
+				position: "topleft",
+				placeholder: "Enter place name",
+				errorMessage: "No place found.",
+			})
+			.addTo(map);
 
 		// Add GeoJSON Data
 		// Null variable that will hold Healthsites data
@@ -252,6 +263,10 @@
 		legend.addTo(map);
 
 		// Add Scale Bar to Map
+		L.control.scale({
+			position: 'bottomleft'
+		}).addTo(map);
+
 	</script>
 </body>
 
