@@ -19,8 +19,6 @@
 		}
 
 		h1 {
-			float: left;
-			padding-left: 10px;
 			font-family: 'Corben', cursive;
 			font-size: 42px;
 			color: #610f07;
@@ -34,7 +32,8 @@
 		}
 
 		#wrapper {
-			width: 800px;
+			margin-right: auto;
+			margin-left: auto;
 		}
 
 		#map {
@@ -99,25 +98,26 @@
 
 <body>
 	<!-- Web map & content will go here.  -->
-	<div id="wrapper">
-		<div id="header">
-			<h1>Malnutrition & Health Sites in Mali</h1>
-		</div>
-		<div id="map"></div>
-		<div id="controls">
-			<!-- Here is the code for a button if we were going to add them.
+		<div id="wrapper">
+			<div id="header">
+				<h1 style="text-align:center">Malnutrition & Health Sites in Mali</h1>
+			</div>
+			<div id="map"></div>
+			<div id="controls">
+				<!-- Here is the code for a button if we were going to add them.
 			<button class="button" id="toggleButton">BUTTON!</button>
 			-->
-			<div id="narrative" class="center">
-				<p><b>Adjustments from the <a href='https://github.com/IDCE-MSGIS/studio-week6'>original tutorial</a>:</b></br>250-300 words about the changes I made to the map. </br>1. changed the colors of the malnutrition choropleth map because the OSM
-					French basemap I'm using has large swaths of yellow area - I wanted something that conveyed the same urgency with the color, but couldn't be mistaken for the basemap information/wouldn't overlap and confuse the user. </br>2. I found an icon
-					for dentist that mimics that of doctor (a briefcase with the symbol of their profession) from a user on Noun Project (<a href='https://thenounproject.com/slaughterslash/'>Achmad Mulyana</a>). </br>3. superficial changes to the fonts (<a
-						href='https://fonts.google.com/'>google fonts</a>), colors of the text and the background to make it easier on the eyes than a white background and black font and to add some character to the map by making the font more interesting,
-					border to the map to visually tie into the page's background color</br>To-Do's include adding a functional legend to turn layers on and off based on the amenity type, add a circle background to the icons in inkscape before uploading them?
-					so they're easier to see, add documentation into the code!</p>
+				<div id="narrative" class="center">
+					<p><b>Adjustments from the <a href='https://github.com/IDCE-MSGIS/studio-week6'>original tutorial</a>:</b></br>250-300 words about the changes I made to the map. </br>1. changed the colors of the malnutrition choropleth map because the OSM
+						French basemap I'm using has large swaths of yellow area - I wanted something that conveyed the same urgency with the color, but couldn't be mistaken for the basemap information/wouldn't overlap and confuse the user. </br>2. I found an
+						icon
+						for dentist that mimics that of doctor (a briefcase with the symbol of their profession) from a user on Noun Project (<a href='https://thenounproject.com/slaughterslash/'>Achmad Mulyana</a>). </br>3. superficial changes to the fonts (<a
+							href='https://fonts.google.com/'>google fonts</a>), colors of the text and the background to make it easier on the eyes than a white background and black font and to add some character to the map by making the font more interesting,
+						border to the map to visually tie into the page's background color</br>To-Do's include adding a functional legend to turn layers on and off based on the amenity type, add a circle background to the icons in inkscape before uploading them?
+						so they're easier to see, add documentation into the code!</p>
+				</div>
 			</div>
 		</div>
-	</div>
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
