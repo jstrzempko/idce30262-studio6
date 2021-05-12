@@ -314,14 +314,48 @@
 			})
 		});
 
-		// add health sites function
-		function addHealthsites() {
-			Healthsites.addTo(map);
-		};
-
 		// remove health sites function
 		function removeHealthsites() {
 			map.removeLayer(Healthsites);
+		};
+
+		// add health sites function
+		function addHealthsites() {
+			if(map.hasLayer(Healthsites)){
+				removeHealthsites();
+			};
+			$.getJSON("data/Mali_healthsites.geojson", function(data) {
+				// set Healthsites to the dataset and add the Healthsites GeoJSON layer to the map
+				Healthsites = L.geoJson(data, {
+					onEachFeature: function(feature, layer) {
+						layer.bindPopup('<b>Name: </b>' + feature.properties.name + '</br><b>Type: </b>' + feature.properties.amenity);
+					},
+					pointToLayer: function(feature, latlng) {
+						if (feature.properties.amenity == "clinic") { // Replacing previous marker with conditionals
+							var marker = L.marker(latlng, {
+								icon: clinicIcon
+							});
+						} else if (feature.properties.amenity == "dentist") {
+							var marker = L.marker(latlng, {
+								icon: dentistIcon
+							});
+						} else if (feature.properties.amenity == "doctors") {
+							var marker = L.marker(latlng, {
+								icon: doctorsIcon
+							});
+						} else if (feature.properties.amenity == "hospital") {
+							var marker = L.marker(latlng, {
+								icon: hospitalIcon
+							});
+						} else {
+							var marker = L.marker(latlng, {
+								icon: pharmacyIcon
+							});
+						};
+						return marker;
+					}
+				}).addTo(map);
+			});
 		};
 
 		// toggle health sites function
