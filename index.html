@@ -79,6 +79,121 @@
 		#controls {
 			margin-right: auto;
 			margin-left: auto;
+			margin-top: 10px;
+		}
+
+		#toggleButton {
+			background-color: #3b0e0a;
+			border: 2px solid #efd399;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			display: inline-block;
+			font-family: 'Lato', sans-serif;
+			font-size: 18px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		#toggleButton:hover {
+			background-color: #efd399;
+			color: #3b0e0a;
+			border: 2px solid #3b0e0a;
+		}
+
+		#filterClinic {
+			background-color: #3b0e0a;
+			border: 2px solid #efd399;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			display: inline-block;
+			font-family: 'Lato', sans-serif;
+			font-size: 18px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		#filterClinic:hover {
+			background-color: #efd399;
+			color: #3b0e0a;
+			border: 2px solid #3b0e0a;
+		}
+
+		#filterDentist {
+			background-color: #3b0e0a;
+			border: 2px solid #efd399;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			display: inline-block;
+			font-family: 'Lato', sans-serif;
+			font-size: 18px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		#filterDentist:hover {
+			background-color: #efd399;
+			color: #3b0e0a;
+			border: 2px solid #3b0e0a;
+		}
+
+		#filterDoctor {
+			background-color: #3b0e0a;
+			border: 2px solid #efd399;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			display: inline-block;
+			font-family: 'Lato', sans-serif;
+			font-size: 18px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		#filterDoctor:hover {
+			background-color: #efd399;
+			color: #3b0e0a;
+			border: 2px solid #3b0e0a;
+		}
+
+		#filterHospital {
+			background-color: #3b0e0a;
+			border: 2px solid #efd399;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			display: inline-block;
+			font-family: 'Lato', sans-serif;
+			font-size: 18px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		#filterHospital:hover {
+			background-color: #efd399;
+			color: #3b0e0a;
+			border: 2px solid #3b0e0a;
+		}
+
+		#filterPharm {
+			background-color: #3b0e0a;
+			border: 2px solid #efd399;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			display: inline-block;
+			font-family: 'Lato', sans-serif;
+			font-size: 18px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		#filterPharm:hover {
+			background-color: #efd399;
+			color: #3b0e0a;
+			border: 2px solid #3b0e0a;
 		}
 
 		#narrative {
@@ -96,13 +211,13 @@
 </head>
 
 <body>
-	<!-- Web map & content will go here.  -->
+	<!-- create wrapper to hold everything  -->
 	<div id="wrapper">
 		<div id="header">
 			<h1 style="text-align:center">Malnutrition & Health Sites in Mali</h1>
 		</div>
 		<div id="map"></div>
-		<div id="controls" style="margin: 15px;">
+		<div id="controls">
 			<!--<button id="addButton">Show All Healthsites</button>-->
 			<!--<button id="removeButton">Remove All Healthsites</button>-->
 			<button id="toggleButton">Toggle All Healthsites</button>
@@ -114,14 +229,12 @@
 		</div>
 		<div id="narrative" class="center">
 			<p><b>Adjustments from the <a href='https://github.com/IDCE-MSGIS/studio-week6'>original tutorial</a>:</b></br>250-300 words about the changes I made to the map. </br>1. changed the colors of the malnutrition choropleth map because the OSM
-				French basemap I'm using has large swaths of yellow area - I wanted something that conveyed the same urgency with the color, but couldn't be mistaken for the basemap information/wouldn't overlap and confuse the user. </br>2. I found an
-				icon
+				French basemap I'm using has large swaths of yellow area - I wanted something that conveyed the same urgency with the color, but couldn't be mistaken for the basemap information/wouldn't overlap and confuse the user. </br>2. I found an icon
 				for dentist that mimics that of doctor (a briefcase with the symbol of their profession) from a user on Noun Project (<a href='https://thenounproject.com/slaughterslash/'>Achmad Mulyana</a>). </br>3. superficial changes to the fonts (<a
-					href='https://fonts.google.com/'>google fonts</a>), colors of the text and the background to make it easier on the eyes than a white background and black font and to add some character to the map by making the font more interesting,
-				border to the map to visually tie into the page's background color
-				4. I would use clusters to cluster the centers because the single icon symbology gets cluttered really fast</br>To-Do's include adding a functional legend to turn layers on and off based on the amenity type, add a circle background to the
-				icons in inkscape before uploading them?
-				so they're easier to see, add documentation into the code!</p>
+					href='https://fonts.google.com/'>google fonts</a>), colors of the text and the background to make it easier on the eyes than a white background and black font and to add some character to the map by making the font more interesting, border
+				to the map to visually tie into the page's background color </br> 4. I would use clusters to cluster the centers because the single icon symbology gets cluttered really fast, instead created buttons using <a
+					href="http://duspviz.mit.edu/web-map-workshop/leaflet-javascript-interactions/">This Tutorial</a></br>Things I would do if I was more invested: change the icons to have a background so that they are more easily visible on the map? clean up
+				the code to remove redundancies, my understanding of jquery is still quite minimal which makes me nervous to remove extraneous code because I may break the functionality of the web map!</p>
 		</div>
 	</div>
 	</div>
@@ -154,7 +267,7 @@
 		// Null variable that will hold Healthsites data
 		var Healthsites = null;
 
-		// Add GeoJSON Data to the map when it loads
+		// Create the function to get Healthsites data
 		$.getJSON("data/Mali_healthsites.geojson", function(data) {
 			// set Healthsites to the dataset and add the Healthsites GeoJSON layer to the map
 			Healthsites = L.geoJson(data, {
@@ -188,17 +301,17 @@
 			})
 		});
 
-		// add coffee shops function
+		// add health sites function
 		function addHealthsites() {
 			Healthsites.addTo(map);
 		};
 
-		// add coffee shops function
+		// remove health sites function
 		function removeHealthsites() {
 			map.removeLayer(Healthsites);
 		};
 
-		// Toggle Coffee Shops
+		// toggle health sites function
 		function toggleHealthsites() {
 			if (map.hasLayer(Healthsites)) {
 				removeHealthsites();
@@ -207,12 +320,12 @@
 			}
 		};
 
-		// add functionality for toggle button
+		// add functionality for toggle button with jquery
 		$("#toggleButton").click(function() {
 			toggleHealthsites();
 		});
 
-		// Use $( "elementID") and the jQuery click listener method filter Starbucks
+		// Use $( "elementID") and the jQuery click listener method filter clinics
 		$("#filterClinic").click(function() {
 			removeHealthsites();
 			$.getJSON("data/Mali_healthsites.geojson", function(data) {
@@ -240,7 +353,7 @@
 			});
 		});
 
-		// Use $( "elementID") and the jQuery click listener method filter Starbucks
+		// Use $( "elementID") and the jQuery click listener method filter dentists
 		$("#filterDentist").click(function() {
 			removeHealthsites();
 			$.getJSON("data/Mali_healthsites.geojson", function(data) {
@@ -268,7 +381,7 @@
 			});
 		});
 
-		// Use $( "elementID") and the jQuery click listener method filter Starbucks
+		// Use $( "elementID") and the jQuery click listener method filter doctors
 		$("#filterDoctor").click(function() {
 			removeHealthsites();
 			$.getJSON("data/Mali_healthsites.geojson", function(data) {
@@ -296,7 +409,7 @@
 			});
 		});
 
-		// Use $( "elementID") and the jQuery click listener method filter Starbucks
+		// Use $( "elementID") and the jQuery click listener method filter hospital
 		$("#filterHospital").click(function() {
 			removeHealthsites();
 			$.getJSON("data/Mali_healthsites.geojson", function(data) {
@@ -324,7 +437,7 @@
 			});
 		});
 
-		// Use $( "elementID") and the jQuery click listener method filter Starbucks
+		// Use $( "elementID") and the jQuery click listener method filter pharmacies
 		$("#filterPharm").click(function() {
 			removeHealthsites();
 			$.getJSON("data/Mali_healthsites.geojson", function(data) {
