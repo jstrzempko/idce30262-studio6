@@ -105,6 +105,8 @@
 		<div id="map"></div>
 		<div id="controls" style="margin: 15px;">
 			<button id="addButton">Show All Healthsites</button>
+			<button id="removeButton">Remove All Healthsites</button>
+			<button id="toggleButton">Toggle All Healthsites</button>
 		</div>
 		<div id="narrative" class="center">
 			<p><b>Adjustments from the <a href='https://github.com/IDCE-MSGIS/studio-week6'>original tutorial</a>:</b></br>250-300 words about the changes I made to the map. </br>1. changed the colors of the malnutrition choropleth map because the OSM
@@ -131,7 +133,7 @@
 
 		// Add Tile Layer
 		L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-			attribution: '&copy; OpenStreetMap France | &copy; Tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> | Data by <a href="https://data.humdata.org/dataset/wfp-geonode-ica-mali-prevalence-of-global-acute-malnutrition">World Food Programme</a> and <a href="https://data.humdata.org/dataset/mali-healthsites">OSM Contributors</a>',
+			attribution: '&copy; OpenStreetMap France | &copy; Tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> | Data by <a href="https://data.humdata.org/dataset/wfp-geonode-ica-mali-prevalence-of-global-acute-malnutrition">World Food Programme</a> & <a href="https://data.humdata.org/dataset/mali-healthsites">OSM Contributors</a>',
 			maxZoom: 18,
 			minZoom: 2,
 		}).addTo(map);
@@ -186,9 +188,29 @@
 		// Create event listener for the Add All Healthsites Button
 		document.getElementById("addButton").addEventListener("click", addHealthsites);
 
+		// Add button functionality
+		// Create event listener for the Remove All Healthsites Button
+		document.getElementById("removeButton").addEventListener("click", removeHealthsites);
+
+		document.getElementById("toggleButton").addEventListener("click", toggleHealthsites);
+
 		// add coffee shops function
 		function addHealthsites() {
 			Healthsites.addTo(map);
+		};
+
+		// add coffee shops function
+		function removeHealthsites() {
+			map.removeLayer(Healthsites);
+		};
+
+		// Toggle Coffee Shops
+		function toggleHealthsites() {
+			if (map.hasLayer(Healthsites)) {
+				removeHealthsites();
+			} else {
+				addHealthsites();
+			}
 		};
 
 		// Create Custom Icons Here
